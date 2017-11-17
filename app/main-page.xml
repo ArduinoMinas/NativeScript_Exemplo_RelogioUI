@@ -31,6 +31,7 @@ https://docs.nativescript.org/ui/components.
         <TextField editable="false" text="{{ counter1 }}" class="h2 text-center" textWrap="true"/>
         <TextField editable="false" text="{{ counter2 }}" class="h2 text-center" textWrap="true"/>
         <TextField editable="false" text="{{ counter3 }}" class="h2 text-center" textWrap="true"/>
+        <TextField editable="false" text="{{ message }}" class="h2 text-center" textWrap="true"/>
         <TextField editable="false" text="{{ time }}" class="h2 text-center" textWrap="true"/>
     </StackLayout>
 </Page>

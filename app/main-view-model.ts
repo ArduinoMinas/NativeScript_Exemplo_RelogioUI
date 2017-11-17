@@ -6,11 +6,16 @@ export class HelloWorldModel extends Observable {
     private _counter1: number;
     private _counter2: number;
     private _counter3: number;
+    
+    private _message: string;
+
     private _time: string;
+
     private _id1: number;
     private _id2: number;
     private _id3: number;
     private _id4: number;
+    private _id5: number;
 
     private _dateFormat: intlModule.DateTimeFormat;
 
@@ -23,7 +28,9 @@ export class HelloWorldModel extends Observable {
         this._counter2 = 0;
         this._counter3 = 0;
 
-        this._dateFormat = new intlModule.DateTimeFormat('en-US', {'hour': 'numeric', 'minute': 'numeric', 'second': ''});
+        this._message = "";
+
+        this._dateFormat = new intlModule.DateTimeFormat('en-US', {'hour': 'numeric', 'minute': 'numeric', 'second': 'numeric', 'hour12': 'true'});
 
         this.updateTime();
     }
@@ -41,6 +48,10 @@ export class HelloWorldModel extends Observable {
     doDateFormat(dt){
       let fmtDt = this._dateFormat.format(dt);
       return fmtDt;
+    }
+
+    get message(){
+        return this._message;
     }
 
     get time(){
@@ -70,6 +81,7 @@ export class HelloWorldModel extends Observable {
     }
     
     public onTap() {
+        let countLocal:number = 0 ;
         if(this._id1 == null){
             this._id1 = setInterval(()=>{
                 this.counter1++
@@ -97,6 +109,16 @@ export class HelloWorldModel extends Observable {
         }else{
             clearTimeout(this._id4);
             this._id4 = null;
+        }
+        if(this._id5 == null){
+            this._id5 = setInterval(()=>{
+                countLocal ++;
+                this._message = "Contador Local: ".concat(countLocal.toString());
+                this.notifyPropertyChange("message", this._message);
+            })
+        }else{
+            clearTimeout(this._id5);
+            this._id5 = null;
         }
         console.log("onTap");
     }
